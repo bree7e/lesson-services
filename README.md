@@ -1,37 +1,38 @@
 # Сервисы и внедрение зависимостей
 
-```bash
-ng g service student
+Убрать `providedIn: 'root'`
+```ts
+@Injectable()
+export class StudentService {}
 ```
 
-Добавить метод в `src\app\student.service.ts`
+```bash
+ng g service mock-student
+```
+
 ```ts
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class StudentService {
-  constructor() {}
+export class MockStudentService {
+
+  constructor() { }
 
   factorial(n): number {
-    return n !== 1 ? n * this.factorial(n - 1) : 1;
+    return 100500;
   }
 }
 ```
 
-Использовать сервис в компоненте `src\app\app.component.ts`
+Переделать компонент `src\app\app.component.ts`
 ```ts
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  providers: [{
+    provide: StudentService,
+    useClass: MockStudentService,
+  }],
 })
-export class AppComponent implements OnInit {
-  title = 'lesson4';
-  constructor(private _studentService: StudentService) {}
-
-  ngOnInit() {
-    const a = this._studentService.factorial(12);
-    console.log(a);
-  }
-}
 ```
