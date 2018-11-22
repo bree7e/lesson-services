@@ -1,38 +1,26 @@
 # Сервисы и внедрение зависимостей
 
-Убрать `providedIn: 'root'`
+Создать `InjectionToken`
 ```ts
-@Injectable()
-export class StudentService {}
+const sToken = new InjectionToken<string>('блюдо');
 ```
 
-```bash
-ng g service mock-student
+Создать провайдер
+```ts
+  providers: [{
+    provide: sToken,
+    useValue: 'Пирожок',
+  }],
 ```
 
+Внедрить в компонент
 ```ts
-@Injectable({
-  providedIn: 'root'
-})
-export class MockStudentService {
+export class AppComponent implements OnInit {
+  title = 'lesson4';
+  constructor( @Inject(sToken) private _dish) {}
 
-  constructor() { }
-
-  factorial(n): number {
-    return 100500;
+  ngOnInit() {
+    console.log(this._dish);
   }
 }
-```
-
-Переделать компонент `src\app\app.component.ts`
-```ts
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [{
-    provide: StudentService,
-    useClass: MockStudentService,
-  }],
-})
 ```
