@@ -4,8 +4,7 @@ import { StudentService } from '../student.service';
 @Component({
   selector: 'app-one',
   templateUrl: './one.component.html',
-  styleUrls: ['./one.component.css'],
-  providers: [StudentService]
+  styleUrls: ['./one.component.css']
 })
 export class OneComponent implements OnInit {
   constructor(private _studentService: StudentService) {}

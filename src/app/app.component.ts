@@ -9,10 +9,10 @@ const sToken = new InjectionToken<string>('блюдо');
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [
-    {
-      provide: StudentService,
-      useClass: MockStudentService,
-    },
+    // {
+    //   provide: StudentService,
+    //   useClass: MockStudentService,
+    // },
     {
       provide: sToken,
       useValue: 'Пирожок',

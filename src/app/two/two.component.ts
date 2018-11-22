@@ -4,8 +4,7 @@ import { StudentService } from '../student.service';
 @Component({
   selector: 'app-two',
   templateUrl: './two.component.html',
-  styleUrls: ['./two.component.css'],
-  providers: [StudentService]
+  styleUrls: ['./two.component.css']
 })
 export class TwoComponent implements OnInit {
   constructor(private _studentService: StudentService) {}

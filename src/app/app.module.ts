@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { OneComponent } from './one/one.component';
 import { TwoComponent } from './two/two.component';
+import { StudentService } from './student.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { TwoComponent } from './two/two.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [StudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

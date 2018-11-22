@@ -40,25 +40,27 @@ export class OneComponent implements OnInit {
 <app-two></app-two>
 ```
 
-Перенести провайдеры в модуль
+Убрать из компонентов  one & two провайдер `StudentService`
+`id` станут `undefined`, потому что теперь `StudentService` будет браться из `AppComponent`,
+а в нем он подменён `MockStudentService`.
 
-Использовать `providedIn: 'root'`
-
+Убрать компонента `AppComponent` провайдер `StudentService` 
+Разместить провайдер `StudentService` в модуле `AppModule`.
 ```ts
-  providers: [{
-    provide: sToken,
-    useValue: 'Пирожок',
-  }],
+@NgModule({
+  declarations: [
+    AppComponent,
+    OneComponent,
+    TwoComponent,
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [StudentService],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
 ```
 
-Внедрить в компонент
-```ts
-export class AppComponent implements OnInit {
-  title = 'lesson4';
-  constructor( @Inject(sToken) private _dish) {}
+Убрать провайдер `StudentService` из модуля `AppModule` и использовать для сервиса `providedIn: 'root'`
 
-  ngOnInit() {
-    console.log(this._dish);
-  }
-}
-```
